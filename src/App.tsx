@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense } from "react";
+import { Provider } from "use-http";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import { Header } from "./components/Header/Header";
+import styles from "./App.module.css";
 
-function App() {
+const HomePage = lazy(() => import("./pages/home"));
+const MatchDetails = lazy(() => import("./pages/match-details"));
+
+export const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <Header />
+      <Suspense fallback={null}>
+        <Provider url="https://rtcwproapi.donkanator.com">
+          <Router>
+            <Switch>
+              <Route path="/matches/:matchId" render={() => <MatchDetails />} />
+              <Route path="/" render={() => <HomePage />} />
+              <Redirect to="/" />
+            </Switch>
+          </Router>
+        </Provider>
+      </Suspense>
     </div>
   );
-}
-
-export default App;
+};

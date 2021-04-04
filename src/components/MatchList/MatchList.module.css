@@ -1,0 +1,45 @@
+.body {
+  background-color: var(--background-secondary);
+  border-radius: 6px;
+  width: 600px;
+}
+
+.row {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  height: 46px;
+  padding: 0 12px;
+  text-decoration: none;
+}
+
+.row:first-child {
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.row:last-child {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.row:hover {
+  background-color: var(--background-primary);
+}
+
+.matchId {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.map {
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+.region {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: auto;
+}

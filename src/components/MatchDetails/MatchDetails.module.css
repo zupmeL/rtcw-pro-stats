@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+}
+
+.title {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-left: 12px;
+  font-weight: 600;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+}
+
+.side {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: 12px 0 0 12px;
+}
+
+.player {
+  height: 28px;
+}

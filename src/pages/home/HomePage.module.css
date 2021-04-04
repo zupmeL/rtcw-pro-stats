@@ -1,0 +1,13 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title {
+  color: var(--text-muted);
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0 0 8px;
+}
