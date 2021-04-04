@@ -10,7 +10,7 @@
   color: var(--text-muted);
   display: grid;
   font-size: 10px;
-  grid-template-columns: 200px 70px 70px 1fr;
+  grid-template-columns: 125px 70px 70px 1fr;
   padding: 0 16px;
   margin-bottom: 8px;
 }
@@ -42,7 +42,7 @@
   border-bottom: 1px solid var(--background-modifier-accent);
   height: 30px;
   font-size: 13px;
-  grid-template-columns: 200px 70px 70px 1fr;
+  grid-template-columns: 125px 70px 70px 1fr;
   padding: 4px 16px;
 }
 
