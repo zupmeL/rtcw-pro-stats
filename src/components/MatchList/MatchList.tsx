@@ -13,12 +13,23 @@ export const MatchList: FC<MatchListProps> = ({ loading, matches }) => {
     return <div>Loading matches</div>;
   }
 
+  const games = matches.reduce( ( acc: Array<Match>, currentMatch: Match, index: number, array: Match[] ) => {
+    if ( index > 0 ) {
+      if ( currentMatch.match_id !== array[index - 1].match_id ) {
+        acc.push( currentMatch );
+      }
+    } else {
+      acc.push( currentMatch );
+    }
+    return acc;
+  }, [] );
+
   return (
     <div className={styles.body}>
-      {matches.map((match) => (
+      {games.map((match) => (
         <Link
           to={`/matches/${match.match_id}`}
-          key={match.match_round_id}
+          key={match.match_id}
           className={styles.row}
         >
           <div className={styles.matchId}>{match.match_id}</div>
