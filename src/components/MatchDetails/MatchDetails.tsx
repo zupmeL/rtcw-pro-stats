@@ -1,7 +1,6 @@
 import { FC, useMemo } from "react";
 import useFetch from "use-http";
 import { PlayerStats, StatsResponse } from "../../types";
-import { toList } from "../../util/toList";
 import styles from "./MatchDetails.module.css";
 import { Team } from "./Team";
 
@@ -21,15 +20,15 @@ export const MatchDetails: FC<MatchDetailsProps> = ({ matchId }) => {
       return [[], []];
     }
 
-    const [axisPlayers, alliesPlayers] = data.statsall;
+    const { axisPlayers, alliesPlayers }  = splitPlayersIntoTeams( data.statsall );
 
     const byEffiency = (a: PlayerStats, b: PlayerStats) => {
       return b.categories.efficiency - a.categories.efficiency;
     };
 
     return [
-      toList(axisPlayers).sort(byEffiency),
-      toList(alliesPlayers).sort(byEffiency),
+      axisPlayers.sort(byEffiency),
+      alliesPlayers.sort(byEffiency),
     ];
   }, [data]);
 
@@ -51,3 +50,20 @@ export const MatchDetails: FC<MatchDetailsProps> = ({ matchId }) => {
     </div>
   );
 };
+
+const splitPlayersIntoTeams = ( players: any[] ) => {
+  let axisPlayers: PlayerStats[] = [], alliesPlayers: PlayerStats[] = [];
+
+  players.forEach( player => {
+    Object.keys( player ).forEach( player_id => {
+      player = player[player_id]
+    } );
+    if ( player.team.toUpperCase() === "AXIS" ) {
+      axisPlayers.push( player );
+    } else {
+      alliesPlayers.push( player );
+    }
+  } );
+
+  return { alliesPlayers, axisPlayers };
+}
